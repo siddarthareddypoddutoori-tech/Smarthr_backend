@@ -1,20 +1,13 @@
-# Step 1: Build Stage
-FROM node:18-alpine AS build
+FROM python:3.11-slim
+
 WORKDIR /app
 
-# Copy package files and install dependencies
-COPY package*.json ./
-RUN npm install
+COPY requirements.txt .
 
-# Copy source files and build the app
+RUN pip install --no-cache-dir -r requirements.txt
+
 COPY . .
-RUN npm run build
 
-# Step 2: Production Stage with Nginx
-FROM nginx:alpine
-COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 8000
 
-# Expose Nginx web server port
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
