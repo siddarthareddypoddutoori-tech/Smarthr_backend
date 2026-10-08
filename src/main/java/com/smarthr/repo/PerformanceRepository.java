@@ -1,0 +1,1 @@
+package com.smarthr.repo; import com.smarthr.model.Performance; import org.springframework.data.jpa.repository.JpaRepository; public interface PerformanceRepository extends JpaRepository<Performance,Long>{ long countByEmployeeId(Long id); }

@@ -1,0 +1,1 @@
+package com.smarthr.repo; import com.smarthr.model.LeaveRequest; import org.springframework.data.jpa.repository.JpaRepository; import java.util.List; public interface LeaveRequestRepository extends JpaRepository<LeaveRequest,Long>{ long countByEmployeeId(Long id); List<LeaveRequest> findAllByEmployeeIdOrderByFromDateDesc(Long employeeId); }

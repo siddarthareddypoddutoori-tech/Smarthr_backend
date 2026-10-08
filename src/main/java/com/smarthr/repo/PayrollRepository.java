@@ -1,0 +1,1 @@
+package com.smarthr.repo; import com.smarthr.model.Payroll; import org.springframework.data.jpa.repository.JpaRepository; public interface PayrollRepository extends JpaRepository<Payroll,Long>{ long countByEmployeeId(Long id); }
