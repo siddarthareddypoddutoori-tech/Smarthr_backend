@@ -2,6 +2,7 @@ services:
   - type: web
     name: smart-hr-management-system
     runtime: docker
+    rootDir: .
     dockerfilePath: ./Dockerfile
     dockerContext: .
     plan: free

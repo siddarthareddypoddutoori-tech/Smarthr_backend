@@ -5,6 +5,7 @@ Spring Boot backend using MySQL locally and PostgreSQL on Render.
 ## Deploy on Render
 
 1. Create the backend Web Service from this repository in the same region as your PostgreSQL database, and select **Blueprint** so Render reads `render.yaml`. The configured database hostname is Render's internal hostname.
+   The service root directory must be the repository root (`.`), where `Dockerfile`, `pom.xml`, and `src/` are located. If configuring the service manually, set its Root Directory to `.` and Dockerfile Path to `./Dockerfile`.
 2. When prompted, set `DB_USERNAME` and `DB_PASSWORD` to the credentials for your Render PostgreSQL database. Set `CORS_ALLOWED_ORIGINS` to your deployed frontend's exact HTTPS origin (for example, `https://your-frontend.onrender.com`, without `/api`). The JDBC URL in the blueprint targets the database; credentials are not stored in this repository.
 3. Deploy the service. The blueprint generates `JWT_SECRET`, checks `/actuator/health`, and the application listens on Render's `PORT`.
 4. Deploy the frontend separately using the Render Blueprint in the frontend repository. Set `VITE_API_BASE_URL` to your backend's public URL ending in `/api` (for example, `https://your-backend.onrender.com/api`).
