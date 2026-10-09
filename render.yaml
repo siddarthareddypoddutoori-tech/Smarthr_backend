@@ -13,7 +13,7 @@ services:
       - key: SPRING_DATASOURCE_USERNAME
         value: project_4d6z
       - key: SPRING_DATASOURCE_PASSWORD
-        sync: false
+        value: 9dmCswceZwBOvuv0eXqrlfDj5eM2gyl9
       - key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
         value: org.postgresql.Driver
       - key: DB_URL
@@ -21,8 +21,8 @@ services:
       - key: DB_USERNAME
         value: project_4d6z
       - key: DB_PASSWORD
-        sync: false
+        value: 9dmCswceZwBOvuv0eXqrlfDj5eM2gyl9
       - key: CORS_ALLOWED_ORIGINS
-        sync: false
+        value: "*"
       - key: JWT_SECRET
         generateValue: true
