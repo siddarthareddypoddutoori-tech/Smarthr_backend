@@ -17,6 +17,7 @@ public class LeaveController {
  }
  @PutMapping("/{id}/status") @PreAuthorize("hasAnyRole('ADMIN','HR')")
  public LeaveRequest status(@PathVariable Long id,@RequestBody @Valid ReviewInput input){
+  if(input==null||input.status()==null||input.status().isBlank()) throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Status must be APPROVED or REJECTED");
   LeaveStatus nextStatus;
   try{nextStatus=LeaveStatus.valueOf(input.status().toUpperCase());}
   catch(IllegalArgumentException ex){throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"Status must be APPROVED or REJECTED");}
