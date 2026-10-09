@@ -1,13 +1,18 @@
-FROM python:3.11-slim
+FROM maven:3.9-eclipse-temurin-21 AS build
+
+WORKDIR /workspace
+
+COPY pom.xml .
+COPY src ./src
+
+RUN mvn -B -DskipTests package
+
+FROM eclipse-temurin:21-jre
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY --from=build /workspace/target/smart-hr-backend-1.0.0.jar app.jar
 
-RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 8080
 
-COPY . .
-
-EXPOSE 8000
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
