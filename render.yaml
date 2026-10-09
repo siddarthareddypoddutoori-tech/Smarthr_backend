@@ -8,6 +8,14 @@ services:
     plan: free
     healthCheckPath: /actuator/health
     envVars:
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:postgresql://dpg-db4d4kt9fdbs73bj849g-a:5432/project_4d6z
+      - key: SPRING_DATASOURCE_USERNAME
+        value: project_4d6z
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      - key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+        value: org.postgresql.Driver
       - key: DB_URL
         value: jdbc:postgresql://dpg-db4d4kt9fdbs73bj849g-a:5432/project_4d6z
       - key: DB_USERNAME
