@@ -9,7 +9,7 @@ services:
     healthCheckPath: /actuator/health
     envVars:
       - key: DB_URL
-        value: jdbc:postgresql://dpg-db4d4kt9fdbs73bj849g-a/project_4d6z
+        value: jdbc:postgresql://dpg-db4d4kt9fdbs73bj849g-a:5432/project_4d6z
       - key: DB_USERNAME
         sync: false
       - key: DB_PASSWORD
