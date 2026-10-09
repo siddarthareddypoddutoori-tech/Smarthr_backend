@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Run Smart HR Backend",
+            "request": "launch",
+            "mainClass": "com.smarthr.SmartHrApplication",
+            "projectName": "smart-hr-backend"
+        }
+    ]
+}
