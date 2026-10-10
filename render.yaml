@@ -13,7 +13,7 @@ services:
       - key: SPRING_DATASOURCE_URL
         value: jdbc:postgresql://dpg-db4d4kt9fdbs73bj849g-a:5432/project_4d6z
       - key: SPRING_DATASOURCE_USERNAME
-        value: project_4d6z
+        value: project_4d6z_user
       - key: SPRING_DATASOURCE_PASSWORD
         value: 9dmCswceZwBOvuv0eXqrlfDj5eM2gyl9
       - key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
@@ -21,7 +21,7 @@ services:
       - key: DB_URL
         value: jdbc:postgresql://dpg-db4d4kt9fdbs73bj849g-a:5432/project_4d6z
       - key: DB_USERNAME
-        value: project_4d6z
+        value: project_4d6z_user
       - key: DB_PASSWORD
         value: 9dmCswceZwBOvuv0eXqrlfDj5eM2gyl9
       - key: CORS_ALLOWED_ORIGINS
