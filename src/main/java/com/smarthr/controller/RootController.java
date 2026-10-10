@@ -1,6 +1,5 @@
 package com.smarthr.controller;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Map;
@@ -8,10 +7,11 @@ import java.util.Map;
 @RestController
 public class RootController {
     @GetMapping("/")
-    public ResponseEntity<Map<String, String>> root() {
-        return ResponseEntity.ok(Map.of(
-            "status", "Smart HR Management System API is running",
-            "health", "/actuator/health"
-        ));
+    public Map<String, Object> root() {
+        return Map.of(
+            "status", "UP",
+            "service", "Smart HR Management System API",
+            "authEndpoint", "/api/auth/login"
+        );
     }
 }

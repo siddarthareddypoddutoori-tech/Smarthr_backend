@@ -3,24 +3,12 @@ import jakarta.servlet.http.HttpServletRequest; import org.springframework.beans
 import java.util.Arrays; import java.util.List;
 @Configuration @EnableMethodSecurity public class SecurityConfig {
  @Bean PasswordEncoder passwordEncoder(){return new BCryptPasswordEncoder();}
- @Bean SecurityFilterChain filterChain(HttpSecurity http, JwtFilter jwt, @Value("${app.cors.allowed-origins:*}") String configuredOrigins) throws Exception {
+ @Bean SecurityFilterChain filterChain(HttpSecurity http, JwtFilter jwt, @Value("${app.cors.allowed-origins}") String configuredOrigins) throws Exception {
   var allowedOrigins=Arrays.stream(configuredOrigins.split(",")).map(String::trim).filter(origin->!origin.isEmpty()).toList();
-  http.csrf(c->c.disable()).cors(c->c.configurationSource(req->{
-   var x=new CorsConfiguration();
-   if(allowedOrigins.contains("*")){
-    x.setAllowedOriginPatterns(List.of("*"));
-   } else {
-    x.setAllowedOrigins(allowedOrigins);
-   }
-   x.setAllowedMethods(List.of("GET","POST","PUT","DELETE","PATCH","OPTIONS"));
-   x.setAllowedHeaders(List.of("*"));
-   x.setAllowCredentials(true);
-   return x;
-  }))
+  http.csrf(c->c.disable()).cors(c->c.configurationSource(req->{var x=new CorsConfiguration();x.setAllowedOriginPatterns(allowedOrigins);x.setAllowedMethods(List.of("GET","POST","PUT","DELETE","PATCH","OPTIONS"));x.setAllowedHeaders(List.of("*"));x.setAllowCredentials(true);return x;}))
    .sessionManagement(s->s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
    .authorizeHttpRequests(a->a.requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-    .requestMatchers(HttpMethod.GET,"/").permitAll()
-    .requestMatchers("/actuator/health").permitAll()
+    .requestMatchers("/","/error","/actuator/**").permitAll()
     .requestMatchers("/api/auth/**").permitAll()
     .requestMatchers("/api/employees/**","/api/attendance/**","/api/payroll/**","/api/performance/**").hasAnyRole("ADMIN","HR")
     .anyRequest().authenticated())
